@@ -15,6 +15,9 @@ from source_google_search_console.service_account_authenticator import ServiceAc
 from source_google_search_console.streams import (
     SearchAnalyticsAllFields,
     SearchAnalyticsByCountry,
+    SearchAnalyticsByCountryDevice,
+    SearchAnalyticsByCountryDevicePage,
+    SearchAnalyticsByCountryDeviceQuery,
     SearchAnalyticsByDate,
     SearchAnalyticsByDevice,
     SearchAnalyticsByPage,
@@ -60,6 +63,9 @@ class SourceGoogleSearchConsole(AbstractSource):
             SearchAnalyticsByQuery(**stream_config),
             SearchAnalyticsByPage(**stream_config),
             SearchAnalyticsAllFields(**stream_config),
+            SearchAnalyticsByCountryDevice(**stream_config),
+            SearchAnalyticsByCountryDevicePage(**stream_config),
+            SearchAnalyticsByCountryDeviceQuery(**stream_config)
         ]
 
         return streams
