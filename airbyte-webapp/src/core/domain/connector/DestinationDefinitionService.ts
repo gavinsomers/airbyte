@@ -1,14 +1,33 @@
 import { AirbyteRequestService } from "core/request/AirbyteRequestService";
-import { DestinationDefinition } from "./types";
 
-class DestinationDefinitionService extends AirbyteRequestService {
-  get url(): string {
-    return "destination_definitions";
+import {
+  createDestinationDefinition,
+  DestinationDefinitionCreate,
+  DestinationDefinitionUpdate,
+  getDestinationDefinition,
+  listDestinationDefinitionsForWorkspace,
+  listLatestDestinationDefinitions,
+  updateDestinationDefinition,
+} from "../../request/AirbyteClient";
+
+export class DestinationDefinitionService extends AirbyteRequestService {
+  public get(destinationDefinitionId: string) {
+    return getDestinationDefinition({ destinationDefinitionId }, this.requestOptions);
   }
 
-  public update(body: DestinationDefinition): Promise<DestinationDefinition> {
-    return this.fetch<DestinationDefinition>(`${this.url}/update`, body);
+  public list(workspaceId: string) {
+    return listDestinationDefinitionsForWorkspace({ workspaceId }, this.requestOptions);
+  }
+
+  public listLatest() {
+    return listLatestDestinationDefinitions(this.requestOptions);
+  }
+
+  public update(body: DestinationDefinitionUpdate) {
+    return updateDestinationDefinition(body, this.requestOptions);
+  }
+
+  public create(body: DestinationDefinitionCreate) {
+    return createDestinationDefinition(body, this.requestOptions);
   }
 }
-
-export { DestinationDefinitionService };

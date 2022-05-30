@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Airbyte, Inc., all rights reserved.
+ * Copyright (c) 2022 Airbyte, Inc., all rights reserved.
  */
 
 package io.airbyte.config.persistence;
@@ -14,9 +14,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-// we force all interaction with disk storage to be effectively single threaded.
+/**
+ * Validates that json input and outputs for the ConfigPersistence against their schemas.
+ */
+@SuppressWarnings("PMD.AvoidThrowingRawExceptionTypes")
 public class ValidatingConfigPersistence implements ConfigPersistence {
 
   private final JsonSchemaValidator schemaValidator;
@@ -69,13 +74,8 @@ public class ValidatingConfigPersistence implements ConfigPersistence {
   @Override
   public <T> void writeConfig(final AirbyteConfig configType, final String configId, final T config) throws JsonValidationException, IOException {
 
-    final Map<String, T> configIdToConfig = new HashMap<>() {
-
-      {
-        put(configId, config);
-      }
-
-    };
+    final Map<String, T> configIdToConfig = new HashMap<>();
+    configIdToConfig.put(configId, config);
 
     writeConfigs(configType, configIdToConfig);
   }
@@ -96,8 +96,18 @@ public class ValidatingConfigPersistence implements ConfigPersistence {
 
   @Override
   public void replaceAllConfigs(final Map<AirbyteConfig, Stream<?>> configs, final boolean dryRun) throws IOException {
-    // todo (cgardens) need to do validation here.
-    decoratedPersistence.replaceAllConfigs(configs, dryRun);
+    final Map<AirbyteConfig, Stream<?>> augmentedMap = new HashMap<>(configs).entrySet()
+        .stream()
+        .collect(Collectors.toMap(
+            Entry::getKey,
+            entry -> entry.getValue().peek(config -> {
+              try {
+                validateJson(config, entry.getKey());
+              } catch (final JsonValidationException e) {
+                throw new RuntimeException(e);
+              }
+            })));
+    decoratedPersistence.replaceAllConfigs(augmentedMap, dryRun);
   }
 
   @Override
