@@ -273,24 +273,12 @@ class SearchAnalytics(GoogleSearchConsole, ABC):
         return current_stream_state
 
 
-class SearchAnalyticsByDate(SearchAnalytics):
-    dimensions = ["date"]
-
-
 class SearchAnalyticsByCountry(SearchAnalytics):
     dimensions = ["date", "country"]
 
 
-class SearchAnalyticsByDevice(SearchAnalytics):
-    dimensions = ["date", "device"]
-
-
 class SearchAnalyticsByPage(SearchAnalytics):
     dimensions = ["date", "page"]
-
-
-class SearchAnalyticsByQuery(SearchAnalytics):
-    dimensions = ["date", "query"]
 
 
 class SearchAnalyticsAllFields(SearchAnalytics):
@@ -299,8 +287,3 @@ class SearchAnalyticsAllFields(SearchAnalytics):
 class SearchAnalyticsByCountryDevice(SearchAnalytics):
     dimensions = ["date", "country", "device"]
 
-class SearchAnalyticsByCountryDevicePage(SearchAnalytics):
-    dimensions = ["date", "country", "device", "page"]
-
-class SearchAnalyticsByCountryDeviceQuery(SearchAnalytics):
-    dimensions = ["date", "country", "device", "query"]

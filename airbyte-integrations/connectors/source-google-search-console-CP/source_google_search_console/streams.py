@@ -94,7 +94,7 @@ class SearchAnalytics(GoogleSearchConsole, ABC):
     data_field = "rows"
     start_row = 0
     dimensions = []
-    search_types = ["web", "news", "image", "video"]
+    search_types = ["web", "news", "image", "video","googlenews","discover"]
     range_of_days = 3
 
     def path(
@@ -273,34 +273,8 @@ class SearchAnalytics(GoogleSearchConsole, ABC):
         return current_stream_state
 
 
-class SearchAnalyticsByDate(SearchAnalytics):
-    dimensions = ["date"]
+
+class SearchAnalyticsByCountryPage(SearchAnalytics):
+    dimensions = ["date", "country", "page"]
 
 
-class SearchAnalyticsByCountry(SearchAnalytics):
-    dimensions = ["date", "country"]
-
-
-class SearchAnalyticsByDevice(SearchAnalytics):
-    dimensions = ["date", "device"]
-
-
-class SearchAnalyticsByPage(SearchAnalytics):
-    dimensions = ["date", "page"]
-
-
-class SearchAnalyticsByQuery(SearchAnalytics):
-    dimensions = ["date", "query"]
-
-
-class SearchAnalyticsAllFields(SearchAnalytics):
-    dimensions = ["date", "country", "device", "page", "query"]
-
-class SearchAnalyticsByCountryDevice(SearchAnalytics):
-    dimensions = ["date", "country", "device"]
-
-class SearchAnalyticsByCountryDevicePage(SearchAnalytics):
-    dimensions = ["date", "country", "device", "page"]
-
-class SearchAnalyticsByCountryDeviceQuery(SearchAnalytics):
-    dimensions = ["date", "country", "device", "query"]
