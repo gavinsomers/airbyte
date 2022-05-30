@@ -287,3 +287,12 @@ class SearchAnalyticsAllFields(SearchAnalytics):
 class SearchAnalyticsByCountryDevice(SearchAnalytics):
     dimensions = ["date", "country", "device"]
 
+class SearchAnalyticsByCountryDevicePage(SearchAnalytics):
+    dimensions = ["date", "country", "device"]
+
+class SearchAnalyticsByCountryDeviceQuery(SearchAnalytics):
+    dimensions = ["date", "country", "device"]
+
+class SearchAnalyticsByCountryPage(SearchAnalytics):
+    dimensions = ["date", "country", "device"]
+

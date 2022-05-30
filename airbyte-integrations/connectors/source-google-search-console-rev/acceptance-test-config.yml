@@ -31,3 +31,6 @@ tests:
         search_analytics_by_query: [ "https://airbyte.io", "web", "date" ]
         search_analytics_all_fields: [ "https://airbyte.io", "web", "date" ]
         search_analytics_by_country_device: [ "https://airbyte.io", "web", "date" ]
+        search_analytics_by_country_device_page: [ "https://airbyte.io", "web", "date" ]
+        search_analytics_by_country_device_query: [ "https://airbyte.io", "web", "date" ]
+        search_analytics_by_country_page: [ "https://airbyte.io", "web", "date" ]

@@ -17,6 +17,9 @@ from source_google_search_console.streams import (
     SearchAnalyticsByCountry,
     SearchAnalyticsByPage,
     SearchAnalyticsByCountryDevice,
+    SearchAnalyticsByCountryDevicePage,
+    SearchAnalyticsByCountryDeviceQuery,
+    SearchAnalyticsByCountryPage,
     Sitemaps,
     Sites,
 )
@@ -55,7 +58,10 @@ class SourceGoogleSearchConsole(AbstractSource):
             SearchAnalyticsByCountry(**stream_config),
             SearchAnalyticsByPage(**stream_config),
             SearchAnalyticsAllFields(**stream_config),
-            SearchAnalyticsByCountryDevice(**stream_config)
+            SearchAnalyticsByCountryDevice(**stream_config),
+            SearchAnalyticsByCountryDevicePage(**stream_config),
+            SearchAnalyticsByCountryDeviceQuery(**stream_config),
+            SearchAnalyticsByCountryPage(**stream_config)
         ]
 
         return streams
