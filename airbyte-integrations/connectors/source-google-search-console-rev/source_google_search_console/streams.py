@@ -94,7 +94,7 @@ class SearchAnalytics(GoogleSearchConsole, ABC):
     data_field = "rows"
     start_row = 0
     dimensions = []
-    search_types = ["web", "news", "image", "video"]
+    search_types = ["web", "news", "image", "video","googlenews","discover"]
     range_of_days = 3
 
     def path(
@@ -288,11 +288,11 @@ class SearchAnalyticsByCountryDevice(SearchAnalytics):
     dimensions = ["date", "country", "device"]
 
 class SearchAnalyticsByCountryDevicePage(SearchAnalytics):
-    dimensions = ["date", "country", "device"]
+    dimensions = ["date", "country", "device","page"]
 
 class SearchAnalyticsByCountryDeviceQuery(SearchAnalytics):
-    dimensions = ["date", "country", "device"]
+    dimensions = ["date", "country", "device","query"]
 
 class SearchAnalyticsByCountryPage(SearchAnalytics):
-    dimensions = ["date", "country", "device"]
+    dimensions = ["date", "country", "page"]
 

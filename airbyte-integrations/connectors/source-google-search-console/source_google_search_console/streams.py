@@ -243,13 +243,17 @@ class SearchAnalytics(GoogleSearchConsole, ABC):
               "web": {"date": "2022-01-03"},
               "news": {"date": "2022-01-03"},
               "image": {"date": "2022-01-03"},
-              "video": {"date": "2022-01-03"}
+              "video": {"date": "2022-01-03"},
+              "googlenews": {"date": "2022-01-03"},
+              "discover": {"date": "2022-01-03"}
             },
             "http://domain2.com": {
               "web": {"date": "2022-01-03"},
               "news": {"date": "2022-01-03"},
               "image": {"date": "2022-01-03"},
-              "video": {"date": "2022-01-03"}
+              "video": {"date": "2022-01-03"},
+              "googlenews": {"date": "2022-01-03"},
+              "discover": {"date": "2022-01-03"}
             },
             "date": "2022-01-03",
           }
